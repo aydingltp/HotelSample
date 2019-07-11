@@ -18,7 +18,7 @@ namespace HotelSample.Controllers
             //df.Id = 1;
             //df.Password = "dfsf";
 
-            var users = context.Users.ToList();
+            var users = context.User.ToList();
             return View(users);
         }
 
