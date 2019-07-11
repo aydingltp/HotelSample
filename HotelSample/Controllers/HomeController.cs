@@ -10,16 +10,12 @@ namespace HotelSample.Controllers
 {
     public class HomeController : Controller
     {
-        private  DataContext context=new DataContext();
+        private readonly DataContext context=new DataContext();
 
         public IActionResult Index()
         {
-            //var df = new List<User>();
-            //df.Id = 1;
-            //df.Password = "dfsf";
-
-            var users = context.User.ToList();
-            return View(users);
+            var hotels = context.Hotel.ToList();
+            return View(hotels);
         }
 
         public IActionResult Privacy()
