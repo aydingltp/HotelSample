@@ -11,6 +11,5 @@ namespace HotelSample.Models
         public int HotelId { get; set; }
         public int HotelScoreTypeId { get; set; }
         public int ScoreValue { get; set; }
-
     }
 }

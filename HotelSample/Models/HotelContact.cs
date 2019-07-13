@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace HotelSample.Models
 {
-    public class HotelContent
+    public class HotelContact
     {
         public int Id { get; set; }
         public int HotelId { get; set; }

@@ -17,7 +17,7 @@ namespace HotelSample.Models
         public DbSet<HotelAddress> HotelAddress { get; set; }
         public DbSet<HotelComment> HotelComment { get; set; }
         public DbSet<HotelContactType> HotelContactType { get; set; }
-        public DbSet<HotelContent> HotelContent { get; set; }
+        public DbSet<HotelContact> HotelContact { get; set; }
         public DbSet<HotelImage> HotelImage { get; set; }
         public DbSet<HotelRoom> HotelRoom { get; set; }
         public DbSet<HotelRoomPrice> HotelRoomPrice { get; set; }
