@@ -10,11 +10,16 @@ namespace HotelSample.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly DataContext context=new DataContext();
+        private readonly DataContext db=new DataContext();
 
         public IActionResult Index()
         {
-            var hotels = context.Hotel.ToList();
+            var hotels = db.Hotel.ToList();
+            return View(hotels);
+        }
+        public  IActionResult Index(string query)
+        {
+            var hotels=db.Hotel
             return View(hotels);
         }
 

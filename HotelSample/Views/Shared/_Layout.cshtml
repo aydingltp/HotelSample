@@ -1,4 +1,8 @@
-﻿
+﻿@using Microsoft.AspNetCore.Http
+
+@{
+    var userName = Context.Session.GetString("userName");
+}
 
 <!doctype html>
 <html lang="en">
@@ -13,10 +17,10 @@
     <title>Hello, world!</title>
 </head>
 <body>
-    
+
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container">
-            <a class="navbar-brand" href="#">Navbar</a>
+            <a class="navbar-brand" href="#">Hotel</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -48,14 +52,42 @@
                     <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
                     <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
                 </form>
+                <ul class="navbar-nav mr-auto" style="padding-left:20px;">
+
+                    @if (userName != null)
+                    {
+                        <li>
+                            <div style="padding-left:100px;">@userName.ToString()</div>
+                        </li>
+                        <li>
+                            <a style="padding-right:6px; padding-left:6px;">|</a>
+                        </li>
+                        <li class="nav-item active">
+                            <a href="/Account/Logout"><i class="fa fa-power-off"></i>  LogOut </a>
+                        </li>
+                    }
+                    else
+                    {
+                        <li class="nav-item active" style="">
+                            <a href="/Account/Login"><font face="Comic sans MS" size=" 3">Login</font></a>
+                        </li>
+                        <li>
+                            <a style="padding-right:6px; padding-left:6px; ">|</a>
+                        </li>
+                        <li class="nav-item active">
+                            <a href="/Account/SignIn"><font face="Comic sans MS" size=" 3"> Sign In </font></a>
+                        </li>
+                    }
+                </ul>
+
             </div>
         </div>
     </nav>
-    <div class="container">
+    <div class="container" style="margin-top:50px;">
         @RenderBody()
     </div>
-    
-    
+
+
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

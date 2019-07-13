@@ -6,13 +6,13 @@
 <div class="row" style="margin-top:20px;">
     @foreach (var item in Model)
     {
-        <div class="col-md-4">
-            <div class="card" style="width: 18rem;">
+        <div class="col-md-3">
+            <div class="card" style="width: 14rem;">
                 <img src="https://via.placeholder.com/150x100 " class="card-img-top" alt="...">
                 <div class="card-body">
-                    <h5 class="card-title">@item.Name</h5>
-                    <p class="card-text">@item.Description</p>
-                    <a href="#" class="btn btn-primary">Details</a>
+                    <h6 class="card-title">@item.Name</h6>
+                    <small class="card-text">@item.Description</small>
+                    <a href="#" class="btn btn-primary btn-sm">Details</a>
                 </div>
             </div>
         </div>
