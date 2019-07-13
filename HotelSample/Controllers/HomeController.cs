@@ -10,17 +10,26 @@ namespace HotelSample.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly DataContext db=new DataContext();
+        private readonly DataContext db = new DataContext();
 
-        public IActionResult Index()
+        //public IActionResult Index()
+        //{
+        //    var hotels = db.Hotel.ToList();
+        //    return View(hotels);
+        //}
+        public IActionResult Index(string q)
         {
-            var hotels = db.Hotel.ToList();
-            return View(hotels);
-        }
-        public  IActionResult Index(string query)
-        {
-            var hotels=db.Hotel
-            return View(hotels);
+            var hotels = db.Hotel.AsQueryable();
+
+            if (q != null)
+            {
+                hotels = hotels.Where(i => i.Name.Contains(q) || i.Description.Contains(q));
+                return View(hotels.ToList());
+            }
+            else
+            {
+                return View(hotels.ToList());
+            }
         }
 
         public IActionResult Privacy()
