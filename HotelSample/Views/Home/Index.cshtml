@@ -7,12 +7,12 @@
     @foreach (var item in Model)
     {
         <div class="col-md-3">
-            <div class="card" style="width: 14rem;">
+            <div class="card" style="width: 12rem;">
                 <img src="https://via.placeholder.com/150x100 " class="card-img-top" alt="...">
                 <div class="card-body">
                     <h6 class="card-title">@item.Name</h6>
                     <small class="card-text">@item.Description</small>
-                    <a href="#" class="btn btn-primary btn-sm">Details</a>
+                    <a href="~/Hotel/Details/@item.Id" class="btn btn-primary btn-sm">Details</a>
                 </div>
             </div>
         </div>

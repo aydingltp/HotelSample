@@ -15,6 +15,7 @@ namespace HotelSample
 {
     public class Startup
     {
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -44,9 +45,9 @@ namespace HotelSample
 
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
-            services.AddDbContext<DbContext>(options =>
+            services.AddDbContext<HotelDBContext>(options =>
       options.UseSqlServer(
-          Configuration.GetConnectionString("DataContext")));
+          Configuration.GetConnectionString("HotelDatabaseConnection")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -10,7 +10,7 @@ namespace HotelSample.Controllers
 {
     public class AccountController : Controller
     {
-        private DataContext db = new DataContext();
+        private HotelDBContext db = new HotelDBContext();
         [HttpGet]
         public IActionResult Login()
         {

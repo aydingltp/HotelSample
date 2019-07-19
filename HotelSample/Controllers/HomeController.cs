@@ -10,7 +10,7 @@ namespace HotelSample.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly DataContext db = new DataContext();
+        private HotelDBContext db = new HotelDBContext();
 
         //public IActionResult Index()
         //{

@@ -11,20 +11,16 @@ namespace HotelSample.Controllers
 {
     public class HotelController : Controller
     {
-        private readonly DataContext _context;
+        private HotelDBContext _context = new HotelDBContext();
 
-        public HotelController(DataContext context)
-        {
-            _context = context;
-        }
 
-        // GET: Hotels
+        // GET: Hotel
         public async Task<IActionResult> Index()
         {
             return View(await _context.Hotel.ToListAsync());
         }
 
-        // GET: Hotels/Details/5
+        // GET: Hotel/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -42,29 +38,74 @@ namespace HotelSample.Controllers
             return View(hotel);
         }
 
-        // GET: Hotels/Create
-        public IActionResult Create()
+        // GET: Hotel/Create
+        public IActionResult Create2()
         {
             return View();
         }
 
-        // POST: Hotels/Create
+        // POST: Hotel/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,Description")] Hotel hotel)
+        public async Task<IActionResult> Create2(HotelViewModel hotel)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(hotel);
+                var entityHotel = new Hotel
+                {
+                    Name = hotel.Name,
+                    Description = hotel.Description
+                };
+                entityHotel.HotelAddress.Add(new HotelAddress
+                {
+                    HotelId = hotel.Id,
+                    AddressText = hotel.AddressText,
+                    PostalCode = hotel.PostalCode,
+                    CityId = hotel.CityId
+                });
+                entityHotel.HotelRoom.Add(new HotelRoom
+                {
+                    HotelId = hotel.Id,
+                    RoomTypeId=hotel.RoomTypeId,
+                    RoomDetail = hotel.RoomDetail,
+                    RoomSummary = hotel.RoomSummary,
+                });
+                entityHotel.HotelImage.Add(new HotelImage
+                {
+                    HotelId = hotel.Id,
+                    ImagePath = hotel.ImagePath,
+                    Description = hotel.Description
+                });
+                entityHotel.HotelContact.Add(new HotelContact
+                {
+                    HotelId = hotel.Id,
+                    HotelContactTypeId = hotel.HotelContactTypeId,
+                    ContactValue = hotel.ContactValue
+                });
+                //_context.HotelContact.Add(new HotelContact
+                //{
+                //    HotelId = hotel.Id,
+                //    HotelContactTypeId = hotel.HotelContactTypeId,
+                //    ContactValue = hotel.ContactValue,
+                //});
+                entityHotel.HotelScore.Add(
+                    new HotelScore
+                    {
+                        HotelId=hotel.Id,
+                        HotelScoreTypeId=hotel.HotelScoreTypeId,
+                        ScoreValue=hotel.ScoreValue
+                    }
+                );
+                _context.Hotel.Add(entityHotel);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
             return View(hotel);
         }
 
-        // GET: Hotels/Edit/5
+        // GET: Hotel/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -80,7 +121,7 @@ namespace HotelSample.Controllers
             return View(hotel);
         }
 
-        // POST: Hotels/Edit/5
+        // POST: Hotel/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -115,7 +156,7 @@ namespace HotelSample.Controllers
             return View(hotel);
         }
 
-        // GET: Hotels/Delete/5
+        // GET: Hotel/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -133,7 +174,7 @@ namespace HotelSample.Controllers
             return View(hotel);
         }
 
-        // POST: Hotels/Delete/5
+        // POST: Hotel/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)

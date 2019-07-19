@@ -1,15 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace HotelSample.Models
 {
-    public class HotelContact
+    public partial class HotelContact
     {
         public int Id { get; set; }
         public int HotelId { get; set; }
         public string ContactValue { get; set; }
         public int HotelContactTypeId { get; set; }
+
+        public virtual Hotel Hotel { get; set; }
+        public virtual HotelContactType HotelContactType { get; set; }
     }
 }

@@ -1,13 +1,11 @@
-﻿@model HotelSample.Models.Hotel
+﻿@model HotelSample.Models.HotelViewModel
 
 @{
     ViewData["Title"] = "Create";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Create</h1>
-
-<h4>Hotel</h4>
+<h1>Hotel Create</h1>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -24,6 +22,17 @@
                 <span asp-validation-for="Description" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <label name="Image" class="control-label"></label>
+                <input name="Image" type="file" class="form-control" />
+                <span asp-validation-for="ImagePath" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label name="ImageDescription" class="control-label"></label>
+                <input name="ImageDescription" type="file" class="form-control" />
+                <span asp-validation-for="ImageDescription" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>
         </form>
@@ -33,4 +42,3 @@
 <div>
     <a asp-action="Index">Back to List</a>
 </div>
-

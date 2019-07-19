@@ -2,7 +2,7 @@
 
 namespace HotelSample.Migrations
 {
-    public partial class MySecondMigration : Migration
+    public partial class sdgsdg : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
